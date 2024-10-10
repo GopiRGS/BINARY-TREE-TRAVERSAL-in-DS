@@ -11,13 +11,13 @@ struct node *newnode(int data){
     node -> left = node -> right = NULL;
     return node;
 };
-void preorder(struct node *root){
+void postorder(struct node *root){
     if(root==NULL)
         return;
-
+    postorder(root->left);
+    postorder(root->right);
     printf("%d ",root->data);
-    preorder(root->right);
-    preorder(root->left);
+
 }
 int main(){
     struct node *root = newnode(2);
@@ -25,5 +25,5 @@ int main(){
     root -> right= newnode(3);
     root -> left ->left = newnode(7);
     root -> left -> right = newnode(67);
-    preorder(root);
+    postorder(root);
 }
